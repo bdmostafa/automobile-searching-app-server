@@ -79,6 +79,15 @@ client.connect(err => {
                 res.send(result.modifiedCount > 0)
             })
     })
+
+    // Delete a car API
+    app.delete('/delete-car',(req,res)=>{
+        carsCollection.deleteOne({_id: req.headers.id})
+        .then(result=>{
+        //   console.log(result)
+          res.send(result.deletedCount>0)
+        })
+    })
 });
 
 app.get('/', (req, res) => {
